@@ -1,7 +1,3 @@
-# Multimodal classification of molecular subtypes in pediatric acute lymphoblastic leukemia  :girl: :boy:
-
-## We developed a multimodal model named :onion:ALLIUM:garlic: (ALL subtype Identification Using Machine learning) that utilizes either DNA methylation (DNAm) or gene expression (GEX) data as input to predict patient subtype.
-
 #### A) You need to create a conda environment as follows (use the .yml file that is provided):
 
 + conda env create -f environment.yml - this file has a premade environment name 'myenv'. You can change it at your convenience 
@@ -25,7 +21,6 @@ To add your enviroment on the jupyter notebook kernels you need to do the follow
 
 You are ready to :rocket:
 
-#### Obs: Add any other library you need 
 #### To run a Jupyter notebook with R, you can create an R environment using the Anaconda navigator
 ---
 
