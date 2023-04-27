@@ -1,9 +1,8 @@
-from modality import GEX, DNAM
 from pathlib import Path
 import yaml
 
 class Subtype:
-    _SUBTYPES_YML = str(Path(__file__).parent.absolute()) + '/config/subtypes.yml'
+    _SUBTYPES_YML = str(Path(__file__).parent.absolute()) + '/conf/subtypes.yml'
     _subtypes = {}
 
     with open(_SUBTYPES_YML, 'r') as file:
