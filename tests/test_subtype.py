@@ -1,4 +1,5 @@
-from allium import Subtype, GEX, DNAM
+from allium.subtype import Subtype
+from allium.modality import GEX, DNAM
 
 def test_list():
     legacy_dnam_subtype_groups = {'aneuploidy': ['HeH', 'low HeH', 'iAMP21', 'Hypo'], 'ph-group': ['t(9;22)', 'ph-like'],

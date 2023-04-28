@@ -1,8 +1,8 @@
-from pathlib import Path
+from .helpers import conf_path
 import yaml
 
 class Subtype:
-    _SUBTYPES_YML = str(Path(__file__).parent.absolute()) + '/conf/subtypes.yml'
+    _SUBTYPES_YML = conf_path('subtypes.yml')
     _subtypes = {}
 
     with open(_SUBTYPES_YML, 'r') as file:
