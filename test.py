@@ -6,4 +6,6 @@ def test_predict():
     testX = pd.read_csv(data_path('gex/gex.csv', test_data=True))
     pheno = pd.read_csv(data_path('gex/pheno.csv', test_data=True))
     gc = GEXClassifier()
-    gc.predictionsNSC(testX)
+    return gc.predictionsNSC(testX)
+
+print(test_predict())
