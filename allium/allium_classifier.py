@@ -5,7 +5,8 @@ from .helpers import predict_proba
 class AlliumClassifier():
     def predictionsNSC(self, subtype_groups, model, discoverydf, discoverypheno, clinicaldatalist, unique_genedf, 
                    subtypecol, ids, name, datatype, signature_mode = 'all',
-                   imputation = None):
+                   imputation = None, to_json = False):
+                   
     
         """ 
         Arguments:
@@ -28,6 +29,7 @@ class AlliumClassifier():
         along with their corresponding probability score for each classifier's subtype
 
         """
+
         if imputation == None: # GEX mode
             #subtype_groups = groupings(DNAm = False)
             pass
@@ -245,5 +247,8 @@ class AlliumClassifier():
         
         # drop the aiding columns
         ungen.drop(['Subtype detailed_v2', 'Probability detailed_v2'], axis = 1, inplace = True)
+
+        if to_json:
+            return ungen.to_json(orient="index")
 
         return ungen
