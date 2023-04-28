@@ -10,7 +10,7 @@ class DNAMClassifier(AlliumClassifier):
     _imputer = joblib.load(models_path('allium_dnam_imputation_v1.joblib'))
     _signatures = pd.read_csv(signatures_path('signature_cpgs.csv'))
     
-    def predictions(self, dnam, pheno):        
+    def predict(self, dnam, pheno):        
         return self.predictionsNSC(subtype_groups = Subtype.all(DNAM),
                             model = self._model, 
                             discoverydf = dnam, 

@@ -16,7 +16,7 @@ class GEXClassifier(AlliumClassifier):
         pheno.Subtypes.replace(['ETV6-RUNX1', 'Hyperdiploid', 'DUX4-ERG'], ['t(12;21)', 'HeH', 'DUX4-r'], inplace = True)
         return pheno
     
-    def predictions(self, gex, pheno):    
+    def predict(self, gex, pheno):    
         return self.predictionsNSC(subtype_groups = Subtype.all(GEX),
                             model = self._model, 
                             discoverydf = gex, 
