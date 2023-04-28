@@ -17,5 +17,5 @@ def test_predict_dnam():
     dnamc = DNAMClassifier()
     return dnamc.predict(testX, pheno)
 
-test_predict_gex()
-test_predict_dnam()
+print(test_predict_gex())
+print(test_predict_dnam())

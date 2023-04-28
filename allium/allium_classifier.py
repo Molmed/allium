@@ -245,7 +245,5 @@ class AlliumClassifier():
         
         # drop the aiding columns
         ungen.drop(['Subtype detailed_v2', 'Probability detailed_v2'], axis = 1, inplace = True)
-        
-        print(ungen)
 
         return ungen
