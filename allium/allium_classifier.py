@@ -1,57 +1,62 @@
-from .allium_classifier import AlliumClassifier
-from .helpers import models_path, signatures_path, predict_proba
-from .subtype import Subtype
-from .modality import GEX
-import joblib
 import pandas as pd
 import numpy as np
+from .helpers import predict_proba
 
-class GEXClassifier(AlliumClassifier):
-    _GEX_MODEL = models_path('allium_gex_v1.joblib')
-    _GEX_SIGNATURES = signatures_path('signature_genes.csv')
-    _SUBTYPE_COL = 'Subtype'
-    _ID_COL = 'Gene ID'
-    _NAME_COL = 'GEX_subtype'
-
-    _model = joblib.load(_GEX_MODEL)
-    _signatures = pd.read_csv(_GEX_SIGNATURES)
+class AlliumClassifier():
+    def predictionsNSC(self, subtype_groups, model, discoverydf, discoverypheno, clinicaldatalist, unique_genedf, 
+                   subtypecol, ids, name, datatype, signature_mode = 'all',
+                   imputation = None):
     
-    def predict(gex_data):
-        return 0
+        """ 
+        Arguments:
     
-    def predictionsNSC(self, input):
+        --model: A dictionary containing a fitted NSC classifier model per subtype--discoverydf: pandas dataframe num_samples x num_features for the dataset the predictions will be made on
+        --descoverydf: pandas dataframe num_samples x num_features for the dataset used for the discovery phase
+        --discoverypheno: pandas dataframe num_samples x clinical features for discovery df; leave empty if not applicable
+        --clinicaldatalist: list of clinical features of interest to include on the output dataframe; leave empty if not applicable
+        --unique_genedf: pandas dataframe all genes per subtype
+        --subtypecol: the column with the subtypes from unique_genedf DataFrame to retrieve the signatures per subtype
+        --ids: the ID name column for the signatures
+        --name: name of the predictions column
+        --datatype: e.g. DNAm or GEX so as to create a subtype group column with the appropriate prefix
+        --signature_mode: If all, then all signatures are used for each classifier, otherwise each classifier uses their own signatures
+        --imputation: If None then it will be on GEX mode, else will use as impute the exported imputer for imputing the DNAm data
         
-        model = self._model
-        discoverydf = input
-        subtype_groups = Subtype.all(GEX)
-        unique_genedf = self._signatures
-        subtypecol = self._SUBTYPE_COL
-        ids = self._ID_COL
-        name = self._NAME_COL
-        datatype = 'GEX'
-        sub_genes = unique_genedf[ids].to_list()
-            
-        # No clinical data for now
-        ungen = pd.DataFrame(index = (discoverydf.index))
+        Returns:
+        
+        --ungen: dataframe with predictions on the desired cohort for each classifier 
+        along with their corresponding probability score for each classifier's subtype
 
+        """
+        if imputation == None: # GEX mode
+            #subtype_groups = groupings(DNAm = False)
+            pass
+            
+        else: # DNAm mode
+            #subtype_groups = groupings(DNAm = True)
+            discoverydf = discoverydf[unique_genedf[ids].to_list()]
+            discoverydf = pd.DataFrame(imputation.transform(discoverydf), columns = discoverydf.columns, index = discoverydf.index)
+        if not clinicaldatalist: # in case there is no clinical info - completely blind samples or unavaibable for use
+            ungen = pd.DataFrame(index = (discoverydf.index))
+        else:
+            ungen = pd.DataFrame(discoverypheno[clinicaldatalist], columns = clinicaldatalist, index = (discoverypheno.index))
+        
         ######################################### Subtype group (N = 12) loop #####################################################
         for subtype in list(subtype_groups.keys()):
             ############################### ONE vs REST approach for the subtype groups ##########################################
             print('Starting with subtype group {}'.format(subtype))
-            
+            if signature_mode == 'all':
+                sub_genes = unique_genedf[ids].to_list() # subtype specific signatures
+            else:
+                sub_genes = unique_genedf[unique_genedf[subtypecol] == subtype][ids].to_list() # subtype specific signatures
+    
             # create label decoder manually so at the always set other as the 0 class; otherwise the encoding will take place in 
             # alphabetical order          
             decoder = {0: 'other', 1: subtype}
             # Model prediction
             clfall = model[subtype]
-
-            print(clfall)
-
             clfall.predict_proba = predict_proba.__get__(clfall)
             encodingsdf = pd.DataFrame(clfall.predict(discoverydf[sub_genes]), columns = ['encodings'])
-            
-            print(clfall.predict(discoverydf[sub_genes]))
-
             # decode the predictions
             unpreds = encodingsdf.encodings.map(decoder).values 
             probas = clfall.predict_proba(discoverydf[sub_genes])
@@ -62,6 +67,10 @@ class GEXClassifier(AlliumClassifier):
             separation_subs = subtype_groups[subtype]
             if len(separation_subs) == 2:
                 subtype_sep = separation_subs[0]+'_vs_'+separation_subs[1]
+                if signature_mode == 'all':
+                    sub_genes = unique_genedf[ids].to_list() # subtype specific signatures
+                else:
+                    sub_genes = unique_genedf[unique_genedf[subtypecol] == subtype_sep][ids].to_list() # subtype specific signatures
                 newdf = ungen[ungen[subtype+'.classifier.pred'] == subtype].copy()
                 #newdf['subtypes'] = newdf[subtype+'.classifier.pred']
                 if not newdf.empty: # avoid to move forward to subtype level if all the predictions for the groups predicted as other
@@ -98,7 +107,10 @@ class GEXClassifier(AlliumClassifier):
                     label_decoder = {}
                     for i, sub in enumerate(separation_subs):
                         label_decoder[i] = sub
-
+                    if signature_mode == 'all':
+                        sub_genes = unique_genedf[ids].to_list() # subtype specific signatures
+                    else:
+                        sub_genes = unique_genedf[unique_genedf[subtypecol].isin(separation_subs)][ids].to_list()# subtype specific signatures
                     # Model prediction
                     clfall = model['Overall_' + subtype]
                     clfall.predict_proba = predict_proba.__get__(clfall)

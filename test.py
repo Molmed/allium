@@ -12,12 +12,14 @@ def test_predict_gex():
     return gc.predictionsNSC(testX)
 
 def test_predict_dnam():
-    testX = pd.read_csv(data_path('dnam/dnam.csv', test_data=True))
-    pheno = pd.read_csv(data_path('dnam/pheno.csv', test_data=True))
+    testX = pd.read_csv(data_path('dnam/dnam.csv', test_data=True), index_col="ID_REF")
+    pheno = pd.read_csv(data_path('dnam/pheno.csv', test_data=True), index_col="public_id")
     dnamc = DNAMClassifier()
-    return dnamc.predictionsNSC(testX)
+    return dnamc.predictions(testX, pheno)
 
-print(test_predict_dnam())
+#print()
+test_predict_dnam()
+
 
 # path = app_path('../legacy/test_data/DNAm/DNAm_test_v2.pkl')
 # testX =  joblib.load(path)
@@ -26,7 +28,7 @@ print(test_predict_dnam())
 
 # path = app_path('../legacy/test_data/DNAm/DNAm_pheno_test.pkl')
 # testpheno = joblib.load(path)
-# testX.to_csv(data_path("dnam/pheno.csv", test_data=True), index_label="public_id")
+# testpheno.to_csv(data_path("dnam/pheno.csv", test_data=True), index_label="public_id")
 
 # print(testX)
 # print(testpheno)
