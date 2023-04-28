@@ -6,10 +6,10 @@ import joblib
 from pathlib import Path
 
 def test_predict_gex():
-    testX = pd.read_csv(data_path('gex/gex.csv', test_data=True))
-    pheno = pd.read_csv(data_path('gex/pheno.csv', test_data=True))
+    testX = pd.read_csv(data_path('gex/gex.csv', test_data=True), index_col="public_id")
+    pheno = pd.read_csv(data_path('gex/pheno.csv', test_data=True), index_col="Sample SJ ID")
     gc = GEXClassifier()
-    return gc.predictionsNSC(testX)
+    return gc.predictions(testX, pheno)
 
 def test_predict_dnam():
     testX = pd.read_csv(data_path('dnam/dnam.csv', test_data=True), index_col="ID_REF")
@@ -18,7 +18,7 @@ def test_predict_dnam():
     return dnamc.predictions(testX, pheno)
 
 #print()
-test_predict_dnam()
+test_predict_gex()
 
 
 # path = app_path('../legacy/test_data/DNAm/DNAm_test_v2.pkl')
