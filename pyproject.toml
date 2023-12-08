@@ -23,7 +23,7 @@ dependencies = [
     "pandas >= 2.0.3",
     "pyyml >= 6.0.0"
 ]
-requires-python = ">=3.8.10"
+requires-python = ">=3.8.5"
 
 [project.optional-dependencies]
 dev = ["pytest", "bumpver", "pip-tools", "freezegun", "flake8"]
