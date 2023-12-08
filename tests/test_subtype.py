@@ -41,3 +41,13 @@ def test_group():
     assert Subtype.group('PAX5 p.Pro80Arg', GEX) == 'PAX5 p.Pro80Arg'
     assert Subtype.group('PAX5 p.Pro80Arg', DNAM) == 'PAX5 p.Pro80Arg'
     assert Subtype.group('NUTM1-r', GEX) == 'NUTM1-r'
+
+
+def test_groups():
+    assert Subtype.groups(GEX) == ['aneuploidy', 'ph-group', 'ETV6-group', 'T-ALL', 'DUX4-r', 'PAX5alt', '11q23/MLL', 'ZNF384-r', 't(1;19)', 'MEF2D-r', 'PAX5 p.Pro80Arg', 'NUTM1-r', 'Control']
+    assert Subtype.groups(DNAM) == ['aneuploidy', 'ph-group', 'ETV6-group', 'T-ALL', 'DUX4-r', 'PAX5alt', '11q23/MLL', 'ZNF384-r', 't(1;19)', 'MEF2D-r', 'PAX5 p.Pro80Arg', 'NUTM1-r', 'Control']
+
+
+def test_subtypes():
+    assert Subtype.subtypes(GEX) == ['HeH', 'low HeH', 'iAMP21', 't(9;22)', 'ph-like', 't(12;21)', 't(12;21)-like', 'T-ALL', 'DUX4-r', 'PAX5alt', '11q23/MLL', 'ZNF384-r', 't(1;19)', 'MEF2D-r', 'PAX5 p.Pro80Arg', 'NUTM1-r', 'Control']
+    assert Subtype.subtypes(DNAM) == ['HeH', 'low HeH', 'iAMP21', 'Hypo', 't(9;22)', 'ph-like', 't(12;21)', 't(12;21)-like', 'T-ALL', 'DUX4-r', 'PAX5alt', '11q23/MLL', 'ZNF384-r', 't(1;19)', 'MEF2D-r', 'PAX5 p.Pro80Arg', 'NUTM1-r', 'Control']

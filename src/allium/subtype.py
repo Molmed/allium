@@ -25,3 +25,12 @@ class Subtype:
             if subtype in values:
                 return key
         return subtype
+
+    @staticmethod
+    def groups(modality):
+        return list(Subtype.all(modality).keys())
+
+    @staticmethod
+    def subtypes(modality):
+        return [subtype for subtypes in
+                Subtype.all(modality).values() for subtype in subtypes]
