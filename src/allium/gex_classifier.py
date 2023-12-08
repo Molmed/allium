@@ -4,7 +4,7 @@ from .subtype import Subtype
 from .modality import GEX
 import joblib
 import pandas as pd
-import numpy as np
+
 
 class GEXClassifier(AlliumClassifier):
     _model = joblib.load(models_path('allium_gex_v1.joblib'))

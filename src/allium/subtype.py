@@ -1,6 +1,7 @@
 from .helpers import conf_path
 import yaml
 
+
 class Subtype:
     _SUBTYPES_YML = conf_path('subtypes.yml')
     _subtypes = {}
@@ -14,5 +15,13 @@ class Subtype:
         # if it doesn't exist just return the base dict
         try:
             return Subtype._subtypes[modality]
-        except:
+        except KeyError:
             return Subtype._subtypes["base"]
+
+    @staticmethod
+    def group(subtype, modality):
+        subtypes = Subtype.all(modality)
+        for key, values in subtypes.items():
+            if subtype in values:
+                return key
+        return subtype
