@@ -21,9 +21,9 @@ classifiers = [
 keywords = ["transcriptomics", "epigenomics", "multi-omics", "machine learning", "cancer", "leukemia"]
 dependencies = [
     "pandas >= 2.0.3",
-    "pyyml >= 0.0.2"
+    "pyyml >= 6.0.0"
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.8.5"
 
 [project.optional-dependencies]
 dev = ["pytest", "bumpver", "pip-tools", "freezegun", "flake8"]
