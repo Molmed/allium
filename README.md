@@ -1,4 +1,4 @@
-# ALLIUM :garlic:
+# ALLIUM v1.0.0 :garlic:
 
 ## About
 

@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from .helpers import predict_proba
+from .predict import predict_proba
 
 class AlliumClassifier():
     def predictionsNSC(self, subtype_groups, model, discoverydf, discoverypheno, clinicaldatalist, unique_genedf, 
