@@ -21,7 +21,7 @@ classifiers = [
 keywords = ["transcriptomics", "epigenomics", "multi-omics", "machine learning", "cancer", "leukemia"]
 dependencies = [
     "pandas >= 2.0.3",
-    "pyyml >= 6.0.0"
+    "pyYAML >= 6.0.0"
 ]
 requires-python = ">=3.8.5"
 
