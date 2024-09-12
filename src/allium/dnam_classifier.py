@@ -6,21 +6,23 @@ import joblib
 import pandas as pd
 
 class DNAMClassifier(AlliumClassifier):
-    _model = joblib.load(models_path('allium_dnam_v1.joblib'))
-    _imputer = joblib.load(models_path('allium_dnam_imputation_v1.joblib'))
-    _signatures = pd.read_csv(signatures_path('signature_cpgs.csv'))
-    
-    def predict(self, dnam, pheno = None, to_json = False):        
+    def __init__(self, version="v1"):
+        super().__init__(version)
+        self._model = joblib.load(models_path(f'allium_dnam_{version}.joblib'))
+        self._imputer = joblib.load(models_path(f'allium_dnam_imputation_{version}.joblib'))
+        self._signatures = pd.read_csv(signatures_path(f'signature_cpgs_{version}.csv'))
+
+    def predict(self, dnam, pheno = None, to_json = False):
         return self.predictionsNSC(subtype_groups = Subtype.all(DNAM),
-                            model = self._model, 
-                            discoverydf = dnam, 
+                            model = self._model,
+                            discoverydf = dnam,
                             discoverypheno = pheno,
                             clinicaldatalist = ['Subtype_updated'] if not pheno is None else None,
-                            unique_genedf = self._signatures, 
+                            unique_genedf = self._signatures,
                             subtypecol = 'Subtype',
                             ids = 'TargetID',
                             name = 'DNAm_subtype',
                             datatype = 'DNAm',
-                            signature_mode = 'separate', 
+                            signature_mode = 'separate',
                             imputation = self._imputer,
                             to_json=to_json)
