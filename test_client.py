@@ -8,13 +8,13 @@ from pathlib import Path
 def test_predict_gex():
     testX = pd.read_csv(data_path('gex/gex.csv', test_data=True), index_col="public_id")
     pheno = pd.read_csv(data_path('gex/pheno.csv', test_data=True), index_col="Sample SJ ID")
-    gc = GEXClassifier()
+    gc = GEXClassifier('v2')
     return gc.predict(testX, pheno, to_json=True)
 
 def test_predict_dnam():
-    testX = pd.read_csv(data_path('dnam/dnam.csv', test_data=True), index_col="ID_REF")
+    testX = pd.read_csv(data_path('dnam/dnam_v2.csv', test_data=True), index_col="ID_REF")
     pheno = pd.read_csv(data_path('dnam/pheno.csv', test_data=True), index_col="public_id")
-    dnamc = DNAMClassifier()
+    dnamc = DNAMClassifier('v2')
     return dnamc.predict(testX, pheno, to_json=True)
 
 print(test_predict_gex())
