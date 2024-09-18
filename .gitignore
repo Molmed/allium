@@ -1,2 +1,6 @@
 __pycache__
 allium.egg-info
+
+# R data and history files
+.RData
+.Rhistory
