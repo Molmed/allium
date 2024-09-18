@@ -10,10 +10,9 @@ For running the model:
 - Conda
 
 For preprocessing data:
-- R and renv
+- R 4.4.1 or later, and renv
 
 ## Conda environment
-
 You will need to activate the `allium` conda environment before running any subsequent commands.
 
 Install: `conda env create -f environment.yml`
@@ -21,6 +20,9 @@ Install: `conda env create -f environment.yml`
 Activate: `conda activate allium`
 
 Update (after changes to environment.yml): `conda env update --file environment.yml --prune`
+
+## R Environment (for preprocessing data files only)
+Start R from the project directory, then run: `renv::restore()`
 
 ## Prediction client
 Run `python test_client.py` to run GEX and DNAm prediction on test datasets.
