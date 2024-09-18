@@ -2,7 +2,7 @@
 
 ## About
 
-ALLIUM (ALL subtype Identification Using Machine learning) is a multimodal classifier of molecular subtypes in pediatric acute lymphoblastic leukemia, using DNA methylation (DNAm) and gene expression (GEX) data.
+ALLIUM (ALL subtype Identification Using Machine learning) is a multimodal classifier of molecular subtypes in pediatric acute lymphoblastic leukemia, using DNA methylation (DNAm) and gene expression (GEX) data. The reference genome used by this model is Homo_sapiens.GRCh38.103.
 
 ## Modules
 
@@ -10,6 +10,7 @@ This repository contains:
 - the ALLIUM models
 - GEX and DNAm prediction clients
 - data preprocessing helpers
+- metadata generation helpers (use only if changing reference genome versions)
 - test data
 
 ## Pre-requisites
@@ -17,7 +18,7 @@ General:
 - Python 3.8+
 - Conda
 
-For preprocessing data only:
+For regenerating metadata for a different reference genome:
 - R 4.4.1 or later, and renv
 
 You may need to install additional libraries depending on your operating system.
