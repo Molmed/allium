@@ -1,6 +1,12 @@
 __pycache__
 allium.egg-info
+.DS_Store
 
 # R data and history files
 .RData
 .Rhistory
+.Rproj.user
+*.Rproj
+
+# Reference files
+data/reference/*.gtf.gz
