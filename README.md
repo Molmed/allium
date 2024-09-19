@@ -41,5 +41,21 @@ Run `python test_client.py` to run GEX and DNAm prediction on test datasets.
 ## Tests
 Run `pytest`.
 
+## Preprocessing GEX data
+To prepare gene expression for prediction using ALLIUM, you will need a CSV file with raw gene transcript counts. The gene identifiers can be any recognizable format, such as HGNC symbols or Ensembl IDs.
+
+|         | Sample_1 | Sample_2 | ... |
+| --------| -------- | -------- | --- |
+| ETV6    | 10       | 10       | ... |
+| SARS1   | 20       | 10       | ... |
+| DOC2B   | 5        | 10       | ... |
+
+This file will need to undergo:
+- gene identifier standardization
+- batch identification and processing, if necessary
+- normalization
+
+TODO: Add example file to repository, and describe preprocessing script usage.
+
 ## Limitations
 The models were trained using an older version of scikit-learn, due to some legacy dependency issues. This package, together with the Python version, should preferably be upgraded when retraining the model. Due to this, the current version of the prediction client does not work on Mac OS.
