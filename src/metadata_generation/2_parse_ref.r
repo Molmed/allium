@@ -6,7 +6,7 @@ REF_VERSION <- "Homo_sapiens.GRCh38.103"
 REF_DATA_DIR <- file.path(getwd(), "data/reference")
 GTF_FILE_NAME <- paste0(REF_VERSION, ".gtf.gz")
 GENE_ANNOTATION_GTF <- file.path(REF_DATA_DIR, GTF_FILE_NAME)
-PROCESSED_ANNOT_FILE_NAME <- paste0(REF_VERSION, ".allium.annotations.csv")
+PROCESSED_ANNOT_FILE_NAME <- paste0(REF_VERSION, ".allium.annotations.full.csv")
 PROCESSED_ANNOT_PATH <- file.path(REF_DATA_DIR, PROCESSED_ANNOT_FILE_NAME)
 
 cat("Gene annotation path:", GENE_ANNOTATION_GTF, "\n")
@@ -47,7 +47,7 @@ colnames(gene_lengths) <- c("gene_id", "gene_length")
 # Join DataFrames on 'gene_id' column
 full_annot <- merge(annot_filtered, gene_lengths, by = "gene_id", all = TRUE)
 
-# Rename columns 
+# Rename columns
 colnames(full_annot) <- c("id", "chr", "feature", "name", "biotype", "length")
 
 # Drop feature column

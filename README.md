@@ -9,7 +9,7 @@ ALLIUM (ALL subtype Identification Using Machine learning) is a multimodal class
 This repository contains:
 - the ALLIUM models
 - GEX and DNAm prediction clients
-- data preprocessing helpers
+- GEX data preprocessing helpers
 - metadata generation helpers (use only if changing reference genome versions)
 - test data
 
@@ -18,7 +18,7 @@ General:
 - Python 3.8+
 - Conda
 
-For regenerating metadata for a different reference genome:
+For preprocessing GEX data or regenerating metadata:
 - R 4.4.1 or later, and renv
 
 You may need to install additional libraries depending on your operating system.
