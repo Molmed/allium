@@ -42,7 +42,7 @@ Run `python test_client.py` to run GEX and DNAm prediction on test datasets.
 Run `pytest`.
 
 ## Preprocessing GEX data
-To prepare gene expression for prediction using ALLIUM, you will need a CSV file with raw gene transcript counts. The gene identifiers should be HGNC gene symbols.
+To prepare gene expression for prediction using ALLIUM, you will need a CSV file with raw gene transcript counts. The leftmost column should be HGNC gene symbols or Ensembl identifiers.
 
 |         | Sample_1 | Sample_2 | ... |
 | --------| -------- | -------- | --- |
