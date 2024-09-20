@@ -9,8 +9,8 @@ output_file = f'{path_to_data}/counts.raw.lilljebjorn.csv'
 # Load the data
 data = pd.read_csv(input_file, index_col=0)
 
-# Update index to use the gene name
-data.index = data.index.str.split('_').str[1]
+# Update index to use the gene name, after the first underscore
+data.index = data.index.str.split('_', n=1).str[1]
 
 # Drop all rows whose index starts with "ENSGR", these are Y chr genes
 # https://www.gencodegenes.org/pages/faq.html

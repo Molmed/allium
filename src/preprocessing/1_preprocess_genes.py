@@ -21,9 +21,6 @@ ANNOT_FILE_FILTERED = os.path.join(
 data = pd.read_csv(input_file, index_col=0)
 ref = pd.read_csv(ANNOT_FILE_FILTERED)
 
-# Convert all data values to float
-data = data.astype('float64')
-
 # TODO: add command-line parameters to determine if translation from ensembl id is necessary
 # Get gene names from ensembl ids
 # translated_genes = gt.translate_genes(data.index.values,
@@ -53,23 +50,26 @@ data = data[data['gene_name_std'].isin(ref['gene_name_std'])]
 data = data.join(ref.set_index('gene_name_std'), on='gene_name_std')
 
 # Get duplicates
-duplicates = data[data['id'].duplicated(keep=False)]
+duplicates = data[data.duplicated(subset='gene_name_std', keep=False)]
 
-# For each row in duplicates, sum the values of the rows with the same id
+# Get all unique indices from duplicates
+duplicate_gene_names = duplicates['gene_name_std'].unique()
+
+# For each row in duplicates, sum the values of the rows with the same name
 # and update the row with the sum. Then drop the duplicates.
 case_columns = [col for col in duplicates.columns if col.startswith("Case")]
-for idx, row in duplicates.iterrows():
+for duplicate_gene in duplicate_gene_names:
     # Get all rows with the same id
-    dupes = data[data['id'] == row['id']]
+    dupes = data[data['gene_name_std'] == duplicate_gene]
 
-    # Sum the counts of the rows
+    # Sum the rows
     new_counts = dupes[case_columns].sum()
 
     # Update the corresponding data rows with the new counts
-    data.loc[data['id'] == row['id'], case_columns] = new_counts.values
+    data.loc[data['gene_name_std'] == duplicate_gene, case_columns] = new_counts.values
 
 # Keep only the first record of all duplicates
-data = data.drop_duplicates(subset='id')
+data = data.drop_duplicates(subset='gene_name_std')
 
 # Print records in ref.id that are not in data.id
 missing = ref[~ref['id'].isin(data['id'])]
