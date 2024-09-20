@@ -90,5 +90,8 @@ missing_data.index.name = None
 # Append the missing data to the data
 data = pd.concat([data, missing_data])
 
+# Sort data by index
+data = data.sort_index()
+
 # Dump data to file
 data.to_csv(output_file)

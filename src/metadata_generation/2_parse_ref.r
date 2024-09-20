@@ -56,5 +56,8 @@ full_annot$feature <- NULL
 # Strip trailing semicolons from the biotype column
 full_annot$biotype <- sub(";$", "", full_annot$biotype)
 
+# Sort annotations by id
+full_annot <- full_annot[order(full_annot$id), ]
+
 # Write processed metadata
 write.table(full_annot, PROCESSED_ANNOT_PATH, col.names = TRUE, row.names = FALSE, sep = ',', quote = FALSE)
