@@ -74,12 +74,15 @@ data = data.drop_duplicates(subset='id')
 # Print records in ref.id that are not in data.id
 missing = ref[~ref['id'].isin(data['id'])]
 
+# Change index to id column
+data = data.set_index('id')
+
 # Drop all columns except for the case columns
 data = data[case_columns]
 
 # Create records for all missing genes in data, filled with 0s
 # The missing$id is the index value, and all the case columns are 0
-missing_data = pd.DataFrame(index=missing['name'], columns=case_columns, data=0)
+missing_data = pd.DataFrame(index=missing['id'], columns=case_columns, data=0)
 
 # Remove index name
 missing_data.index.name = None
