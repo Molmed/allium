@@ -28,4 +28,4 @@ class GEXClassifier(AlliumClassifier):
         if not self._predictions:
             self.predict(x)
 
-        super().get_predictions(x, pheno, json)
+        return super().get_predictions(x, pheno, json)

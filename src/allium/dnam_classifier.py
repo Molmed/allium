@@ -24,3 +24,9 @@ class DNAMClassifier(AlliumClassifier):
                                                 datatype = 'DNAm',
                                                 signature_mode = 'separate',
                                                 imputation = self._imputer)
+
+    def get_predictions(self, x, pheno=None, json=False):
+        if not self._predictions:
+            self.predict(x)
+
+        return super().get_predictions(x, pheno, json)
