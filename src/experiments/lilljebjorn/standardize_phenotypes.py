@@ -24,5 +24,8 @@ data['Subtype'] = data['Subtype'].replace(subtypes_dict)
 # Rename index to public_id
 data.index.name = 'public_id'
 
+# For each integer index value, convert it to a string of the format "Case_00n"
+data.index = data.index.map(lambda x: f'Case_{x:03d}')
+
 # Dumop to output file
 data.to_csv(output_file)
