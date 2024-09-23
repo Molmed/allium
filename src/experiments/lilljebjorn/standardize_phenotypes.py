@@ -21,5 +21,8 @@ with open(subtypes_file, 'r') as f:
 # Replace Subtype column using dict
 data['Subtype'] = data['Subtype'].replace(subtypes_dict)
 
+# Rename index to public_id
+data.index.name = 'public_id'
+
 # Dumop to output file
 data.to_csv(output_file)
