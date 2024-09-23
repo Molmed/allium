@@ -24,4 +24,8 @@ class GEXClassifier(AlliumClassifier):
                                                 datatype = 'GEX',
                                                 signature_mode = 'all')
 
+    def get_predictions(self, x, pheno=None, json=False):
+        if not self._predictions:
+            self.predict(x)
 
+        super().get_predictions(x, pheno, json)

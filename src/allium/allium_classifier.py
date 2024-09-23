@@ -5,15 +5,16 @@ from .predict import predict_proba
 class AlliumClassifier():
     def __init__(self, version="v1"):
         self._version = version
+        self._predictions = None
 
     def predict(self, x):
         self._x = x
 
     def get_predictions(self, x, pheno=None, json=False):
-        if not self._predictions:
+        if self._predictions is None:
             self.predict(x)
 
-        if pheno:
+        if pheno is not None:
             self._predictions = self._predictions.join(pheno)
 
         if json:
@@ -258,4 +259,4 @@ class AlliumClassifier():
         # drop the aiding columns
         ungen.drop(['Subtype detailed_v2', 'Probability detailed_v2'], axis = 1, inplace = True)
 
-        self._predictions = ungen
+        return ungen
