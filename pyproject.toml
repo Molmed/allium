@@ -57,3 +57,7 @@ push = true
 pythonpath = [
   "src"
 ]
+
+[tool.setuptools]
+packages = ["allium"]
+package-dir = {"" = "src"}
