@@ -12,19 +12,16 @@ class GEXClassifier(AlliumClassifier):
         self._model = joblib.load(models_path(f'allium_gex_{version}.joblib'))
         self._signatures = pd.read_csv(signatures_path(f'signature_genes_{version}.csv'))
 
-    def predict(self, gex, pheno = None, to_json = False, known_subtype_col = 'Subtype'):
-        return self.predictionsNSC(subtype_groups = Subtype.all(GEX),
-                            model = self._model,
-                            discoverydf = gex,
-                            discoverypheno = pheno,
-                            clinicaldatalist = [known_subtype_col] if not pheno is None else None,
-                            unique_genedf = self._signatures,
-                            subtypecol = 'Subtype',
-                            ids = 'Gene ID',
-                            name = 'GEX_subtype',
-                            datatype = 'GEX',
-                            signature_mode = 'all',
-                            to_json=to_json)
-
+    def predict(self, gex):
+        super().predict(gex)
+        self._predictions = self.predictionsNSC(subtype_groups = Subtype.all(GEX),
+                                                model = self._model,
+                                                discoverydf = gex,
+                                                unique_genedf = self._signatures,
+                                                subtypecol = 'Subtype',
+                                                ids = 'Gene ID',
+                                                name = 'GEX_subtype',
+                                                datatype = 'GEX',
+                                                signature_mode = 'all')
 
 

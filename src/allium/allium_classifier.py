@@ -6,9 +6,24 @@ class AlliumClassifier():
     def __init__(self, version="v1"):
         self._version = version
 
-    def predictionsNSC(self, subtype_groups, model, discoverydf, discoverypheno, clinicaldatalist, unique_genedf,
+    def predict(self, x):
+        self._x = x
+
+    def get_predictions(self, x, pheno=None, json=False):
+        if not self._predictions:
+            self.predict(x)
+
+        if pheno:
+            self._predictions = self._predictions.join(pheno)
+
+        if json:
+            return self._predictions.to_json(orient="index")
+
+        return self._predictions
+
+    def predictionsNSC(self, subtype_groups, model, discoverydf, unique_genedf,
                    subtypecol, ids, name, datatype, signature_mode = 'all',
-                   imputation = None, to_json = False):
+                   imputation = None):
 
 
         """
@@ -16,8 +31,6 @@ class AlliumClassifier():
 
         --model: A dictionary containing a fitted NSC classifier model per subtype--discoverydf: pandas dataframe num_samples x num_features for the dataset the predictions will be made on
         --descoverydf: pandas dataframe num_samples x num_features for the dataset used for the discovery phase
-        --discoverypheno: pandas dataframe num_samples x clinical features for discovery df; leave empty if not applicable
-        --clinicaldatalist: list of clinical features of interest to include on the output dataframe; leave empty if not applicable
         --unique_genedf: pandas dataframe all genes per subtype
         --subtypecol: the column with the subtypes from unique_genedf DataFrame to retrieve the signatures per subtype
         --ids: the ID name column for the signatures
@@ -25,11 +38,6 @@ class AlliumClassifier():
         --datatype: e.g. DNAm or GEX so as to create a subtype group column with the appropriate prefix
         --signature_mode: If all, then all signatures are used for each classifier, otherwise each classifier uses their own signatures
         --imputation: If None then it will be on GEX mode, else will use as impute the exported imputer for imputing the DNAm data
-
-        Returns:
-
-        --ungen: dataframe with predictions on the desired cohort for each classifier
-        along with their corresponding probability score for each classifier's subtype
 
         """
 
@@ -41,10 +49,9 @@ class AlliumClassifier():
             #subtype_groups = groupings(DNAm = True)
             discoverydf = discoverydf[unique_genedf[ids].to_list()]
             discoverydf = pd.DataFrame(imputation.transform(discoverydf), columns = discoverydf.columns, index = discoverydf.index)
-        if not clinicaldatalist: # in case there is no clinical info - completely blind samples or unavaibable for use
-            ungen = pd.DataFrame(index = (discoverydf.index))
-        else:
-            ungen = pd.DataFrame(discoverypheno[clinicaldatalist], columns = clinicaldatalist, index = (discoverypheno.index))
+
+
+        ungen = pd.DataFrame(index = (discoverydf.index))
 
         ######################################### Subtype group (N = 12) loop #####################################################
         for subtype in list(subtype_groups.keys()):
@@ -251,7 +258,4 @@ class AlliumClassifier():
         # drop the aiding columns
         ungen.drop(['Subtype detailed_v2', 'Probability detailed_v2'], axis = 1, inplace = True)
 
-        if to_json:
-            return ungen.to_json(orient="index")
-
-        return ungen
+        self._predictions = ungen

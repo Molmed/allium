@@ -6,5 +6,5 @@ pheno = pd.read_csv('/home/marly389-local/Development/data/cpheno.allium.lilljeb
 
 
 gc = GEXClassifier('v2')
-result = gc.predict(testX, pheno, to_json=False, known_subtype_col='Subtype')
+result = gc.predict(testX, pheno=pheno)
 result.to_csv('/home/marly389-local/Development/data/predictions.lilljebjorn.csv')

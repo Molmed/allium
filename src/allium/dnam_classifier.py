@@ -12,17 +12,15 @@ class DNAMClassifier(AlliumClassifier):
         self._imputer = joblib.load(models_path(f'allium_dnam_imputation_{version}.joblib'))
         self._signatures = pd.read_csv(signatures_path(f'signature_cpgs_{version}.csv'))
 
-    def predict(self, dnam, pheno = None, to_json = False):
-        return self.predictionsNSC(subtype_groups = Subtype.all(DNAM),
-                            model = self._model,
-                            discoverydf = dnam,
-                            discoverypheno = pheno,
-                            clinicaldatalist = ['Subtype_updated'] if not pheno is None else None,
-                            unique_genedf = self._signatures,
-                            subtypecol = 'Subtype',
-                            ids = 'TargetID',
-                            name = 'DNAm_subtype',
-                            datatype = 'DNAm',
-                            signature_mode = 'separate',
-                            imputation = self._imputer,
-                            to_json=to_json)
+    def predict(self, dnam):
+        super().predict(dnam)
+        self._predictions = self.predictionsNSC(subtype_groups = Subtype.all(DNAM),
+                                                model = self._model,
+                                                discoverydf = dnam,
+                                                unique_genedf = self._signatures,
+                                                subtypecol = 'Subtype',
+                                                ids = 'TargetID',
+                                                name = 'DNAm_subtype',
+                                                datatype = 'DNAm',
+                                                signature_mode = 'separate',
+                                                imputation = self._imputer)
