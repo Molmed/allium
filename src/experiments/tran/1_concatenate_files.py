@@ -32,6 +32,9 @@ for filename in files:
 # Concatenate all dataframes, using key as column name
 data = pd.concat(dfs, axis=1)
 
+# Sort columns by name
+data = data.sort_index(axis=1)
+
 # Drop all rows whose index starts with "__"
 data = data[~data.index.str.startswith("__")]
 

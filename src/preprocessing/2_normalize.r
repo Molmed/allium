@@ -2,8 +2,8 @@ library(edgeR)
 library(sva)
 
 # CHANGE THIS TO YOUR OWN GEX DATA
-PATH_TO_GEX <- '/Users/marly389/Data/lilljebjorn/counts.filtered.lilljebjorn.csv'
-OUTPUT_FILE_PATH <- '/Users/marly389/Data/lilljebjorn/counts.norm.lilljebjorn.csv'
+PATH_TO_GEX <- '/home/mariya/Data/tran/counts.filtered.tran.csv'
+OUTPUT_FILE_PATH <- '/home/mariya/Data/tran/counts.norm.tran.csv'
 
 REF_VERSION <- "Homo_sapiens.GRCh38.103"
 REF_DATA_DIR <- file.path(getwd(), "data/reference")
