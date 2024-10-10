@@ -4,6 +4,10 @@
 
 ALLIUM (ALL subtype Identification Using Machine learning) is a multimodal classifier of molecular subtypes in pediatric acute lymphoblastic leukemia, using DNA methylation (DNAm) and gene expression (GEX) data. The reference genome used by this model is Homo_sapiens.GRCh38.103.
 
+### Publication
+
+Krali, O., Marincevic-Zuniga, Y., Arvidsson, G. et al. Multimodal classification of molecular subtypes in pediatric acute lymphoblastic leukemia. npj Precis. Onc. 7, 131 (2023). https://doi.org/10.1038/s41698-023-00479-5
+
 ## Modules
 
 This repository contains:
