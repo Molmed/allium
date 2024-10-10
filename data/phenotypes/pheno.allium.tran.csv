@@ -12,16 +12,16 @@ public_id,Subtype
 16-021,t(1;19)
 16-022,B-other
 16-025,HeH
-16-027,B-other
-16-029,B-other
-16-033,B-other
+16-027,DUX4-r
+16-029,DUX4-r
+16-033,DUX4-r
 16-035,T-ALL
 16-037,B-other
 16-038,11q23/MLL
 16-039,PAX5alt
 16-042,T-ALL
-16-044,B-other
-16-047,B-other
+16-044,ph-like
+16-047,ph-like
 16-048,HeH
 16-049,HeH
 16-050,t(12;21)
@@ -35,7 +35,7 @@ public_id,Subtype
 16-070,t(12;21)
 16-074,t(12;21)
 16-076,t(12;21)
-16-077,B-other
+16-077,ph-like
 16-082,MEF2D-r
 16-086,B-other
 16-089,ZNF384-r
@@ -104,11 +104,11 @@ public_id,Subtype
 16-229,t(1;19)
 16-230,DUX4-r
 16-231,PAX5alt
-16-232,B-other
+16-232,ph-like
 16-233,T-ALL
 16-238,t(12;21)
 16-239,HeH
-16-240,HeH
+16-240,PAX5 p.Pro80Arg
 16-241,T-ALL
 16-242,HeH
 16-243,t(12;21)
@@ -122,7 +122,7 @@ public_id,Subtype
 16-258,t(1;19)
 16-261,PAX5alt
 16-265,B-other
-16-266,ph-like
+16-266,iAMP21
 16-267,t(12;21)
 16-268,DUX4-r
 16-269,PAX5alt
@@ -135,7 +135,7 @@ public_id,Subtype
 16-284,DUX4-r
 16-286,PAX5alt
 16-287,HeH
-16-291,HeH
+16-291,"HeH,PAX5alt"
 16-293,t(12;21)
 16-294,DUX4-r
 16-295,HeH
@@ -153,7 +153,7 @@ public_id,Subtype
 16-338,HeH
 16-339,HeH
 16-340,T-ALL
-16-341,BCR-ABL1
+16-341,"BCR-ABL1,iAMP21"
 16-342,HeH
 16-343,ph-like
 16-346,NUTM1-r
