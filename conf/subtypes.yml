@@ -1,31 +1,31 @@
 base: &base
   aneuploidy:
-    - HeH
-    - low HeH
+    - hyperdiploid
+    - low hyperdiploid
     - iAMP21
   ph-group:
-    - t(9;22)
-    - ph-like
+    - BCR::ABL1
+    - BCR::ABL1-like
   ETV6-group:
-    - t(12;21)
-    - t(12;21)-like
+    - ETV6::RUNX1
+    - ETV6::RUNX1-like
   T-ALL:
     - T-ALL
   DUX4-r:
     - DUX4-r
   PAX5alt:
     - PAX5alt
-  11q23/MLL:
-    - 11q23/MLL
+  KMT2A-r:
+    - KMT2A-r
   ZNF384-r:
     - ZNF384-r
-  t(1;19):
-    - t(1;19)
+  TCF3::PBX1:
+    - TCF3::PBX1
   MEF2D-r:
     - MEF2D-r
-  PAX5 p.Pro80Arg:
-    - PAX5 p.Pro80Arg
-  NUTM1-r: 
+  PAX5 P80R:
+    - PAX5 P80R
+  NUTM1-r:
     - NUTM1-r
   Control:
     - Control
@@ -33,7 +33,7 @@ base: &base
 dnam:
   <<: *base
   aneuploidy:
-    - HeH
-    - low HeH
+    - hyperdiploid
+    - low hyperdiploid
     - iAMP21
-    - Hypo
+    - hypodiploid
