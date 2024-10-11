@@ -3,12 +3,12 @@ from allium.modality import GEX, DNAM
 
 
 def test_list():
-    legacy_dnam_subtype_groups = {'aneuploidy': ['hyperdiploid', 'low hyperdiploid', 'iAMP21', 'hypodiploid'], 'ph-group': ['BCR::ABL1', 'BCR::ABL1-like'],
+    legacy_dnam_subtype_groups = {'aneuploidy': ['high hyperdiploid', 'low hyperdiploid', 'iAMP21', 'hypodiploid'], 'ph-group': ['BCR::ABL1', 'BCR::ABL1-like'],
                      'ETV6-group': ['ETV6::RUNX1', 'ETV6::RUNX1-like'],  'T-ALL': ['T-ALL'], 'DUX4-r': ['DUX4-r'],
            'PAX5alt': ['PAX5alt'], 'KMT2A-r': ['KMT2A-r'], 'ZNF384-r': ['ZNF384-r'], 'TCF3::PBX1': ['TCF3::PBX1'],
             'MEF2D-r':['MEF2D-r'], 'PAX5 P80R': ['PAX5 P80R'], 'NUTM1-r': ['NUTM1-r'], 'Control': ['Control']}
 
-    legacy_gex_subtype_groups = {'aneuploidy': ['hyperdiploid', 'low hyperdiploid', 'iAMP21'], 'ph-group': ['BCR::ABL1', 'BCR::ABL1-like'],
+    legacy_gex_subtype_groups = {'aneuploidy': ['high hyperdiploid', 'low hyperdiploid', 'iAMP21'], 'ph-group': ['BCR::ABL1', 'BCR::ABL1-like'],
                      'ETV6-group': ['ETV6::RUNX1', 'ETV6::RUNX1-like'],  'T-ALL': ['T-ALL'], 'DUX4-r': ['DUX4-r'],
            'PAX5alt': ['PAX5alt'], 'KMT2A-r': ['KMT2A-r'], 'ZNF384-r': ['ZNF384-r'], 'TCF3::PBX1': ['TCF3::PBX1'],
             'MEF2D-r':['MEF2D-r'], 'PAX5 P80R': ['PAX5 P80R'], 'NUTM1-r': ['NUTM1-r'], 'Control': ['Control']}
@@ -18,8 +18,8 @@ def test_list():
 
 
 def test_group():
-    assert Subtype.group('hyperdiploid', GEX) == 'aneuploidy'
-    assert Subtype.group('hyperdiploid', DNAM) == 'aneuploidy'
+    assert Subtype.group('high hyperdiploid', GEX) == 'aneuploidy'
+    assert Subtype.group('high hyperdiploid', DNAM) == 'aneuploidy'
     assert Subtype.group('BCR::ABL1', GEX) == 'ph-group'
     assert Subtype.group('BCR::ABL1', DNAM) == 'ph-group'
     assert Subtype.group('ETV6::RUNX1', GEX) == 'ETV6-group'
@@ -49,5 +49,5 @@ def test_groups():
 
 
 def test_subtypes():
-    assert Subtype.subtypes(GEX) == ['hyperdiploid', 'low hyperdiploid', 'iAMP21', 'BCR::ABL1', 'BCR::ABL1-like', 'ETV6::RUNX1', 'ETV6::RUNX1-like', 'T-ALL', 'DUX4-r', 'PAX5alt', 'KMT2A-r', 'ZNF384-r', 'TCF3::PBX1', 'MEF2D-r', 'PAX5 P80R', 'NUTM1-r', 'Control']
-    assert Subtype.subtypes(DNAM) == ['hyperdiploid', 'low hyperdiploid', 'iAMP21', 'hypodiploid', 'BCR::ABL1', 'BCR::ABL1-like', 'ETV6::RUNX1', 'ETV6::RUNX1-like', 'T-ALL', 'DUX4-r', 'PAX5alt', 'KMT2A-r', 'ZNF384-r', 'TCF3::PBX1', 'MEF2D-r', 'PAX5 P80R', 'NUTM1-r', 'Control']
+    assert Subtype.subtypes(GEX) == ['high hyperdiploid', 'low hyperdiploid', 'iAMP21', 'BCR::ABL1', 'BCR::ABL1-like', 'ETV6::RUNX1', 'ETV6::RUNX1-like', 'T-ALL', 'DUX4-r', 'PAX5alt', 'KMT2A-r', 'ZNF384-r', 'TCF3::PBX1', 'MEF2D-r', 'PAX5 P80R', 'NUTM1-r', 'Control']
+    assert Subtype.subtypes(DNAM) == ['high hyperdiploid', 'low hyperdiploid', 'iAMP21', 'hypodiploid', 'BCR::ABL1', 'BCR::ABL1-like', 'ETV6::RUNX1', 'ETV6::RUNX1-like', 'T-ALL', 'DUX4-r', 'PAX5alt', 'KMT2A-r', 'ZNF384-r', 'TCF3::PBX1', 'MEF2D-r', 'PAX5 P80R', 'NUTM1-r', 'Control']

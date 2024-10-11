@@ -1,6 +1,6 @@
 base: &base
   aneuploidy:
-    - hyperdiploid
+    - high hyperdiploid
     - low hyperdiploid
     - iAMP21
   ph-group:
@@ -29,11 +29,10 @@ base: &base
     - NUTM1-r
   Control:
     - Control
-
 dnam:
   <<: *base
   aneuploidy:
-    - hyperdiploid
+    - high hyperdiploid
     - low hyperdiploid
     - iAMP21
     - hypodiploid
