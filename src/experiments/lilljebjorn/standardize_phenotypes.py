@@ -3,7 +3,7 @@ import yaml
 import os
 
 # GEX data from Lilljebjorn et al. 2016
-path_to_data = '/Users/marly389/Data/lilljebjorn/'
+path_to_data = '/home/mariya/Data/lilljebjorn/'
 input_file = f'{path_to_data}/pheno.lilljebjorn.csv'
 output_file = f'{path_to_data}/pheno.allium.lilljebjorn.csv'
 
