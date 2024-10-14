@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "allium"
-version = "v2.2.0"
+version = "v2.3.0"
 description = "ALLIUM is a machine learning model that predicts subtypes of acute lymphoblastic leukemia (ALL)."
 readme = "README.md"
 authors = [
@@ -33,7 +33,7 @@ Homepage = "https://github.com/Molmed/allium"
 
 
 [tool.bumpver]
-current_version = "v2.2.0"
+current_version = "v2.3.0"
 version_pattern = "vMAJOR.MINOR.PATCH"
 commit_message = "bump version {old_version} -> {new_version}"
 tag_message = "{new_version}"
