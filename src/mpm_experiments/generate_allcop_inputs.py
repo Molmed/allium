@@ -1,7 +1,12 @@
 import pandas as pd
 from src.allium.gex_classifier import GEXClassifier
 
-datasets = ['diedrich', 'heinaniemi', 'jude', 'lilljebjorn', 'tran']
+datasets = ['diedrich',
+            'heinaniemi',
+            'jude',
+            'krali',
+            'lilljebjorn',
+            'tran']
 data_dir = '/home/mariya/Data/allium'
 gc = GEXClassifier('v3')
 
