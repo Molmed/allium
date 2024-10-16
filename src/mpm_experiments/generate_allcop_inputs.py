@@ -7,6 +7,10 @@ datasets = ['diedrich',
             'krali',
             'lilljebjorn',
             'tran']
+
+# Uncomment to run individually
+# datasets = ['jude']
+
 data_dir = '/home/mariya/Data/allium'
 gc = GEXClassifier('v3')
 
