@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/632810650.svg)](https://doi.org/10.5281/zenodo.14329233)
 # ALLIUM v2.4.0 :garlic:
 
 ## About
