@@ -1,7 +1,7 @@
 import pandas as pd
-from allium.helpers import data_path, app_path
-from allium.gex_classifier import GEXClassifier
-from allium.dnam_classifier import DNAMClassifier
+from src.allium.helpers import data_path, app_path
+from src.allium.gex_classifier import GEXClassifier
+from src.allium.dnam_classifier import DNAMClassifier
 import joblib
 from pathlib import Path
 
@@ -16,3 +16,6 @@ def test_predict_dnam():
     pheno = pd.read_csv(data_path('dnam/pheno.csv', test_data=True), index_col="public_id")
     dnamc = DNAMClassifier('v3')
     return dnamc.get_predictions(testX, pheno=pheno, json=True)
+
+test_predict_dnam()
+test_predict_gex()
